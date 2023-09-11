@@ -1,12 +1,4 @@
-import { Configuration, OpenAIApi } from 'openai';
-import dotenv from 'dotenv';
-dotenv.config();
-
-const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY
-});
-
-const openai = new OpenAIApi(configuration);
+import openai from "./config/open-ai.js";
 
 async function main() {
     const chatCompletion = await openai.createChatCompletion({
@@ -15,7 +7,7 @@ async function main() {
             {role: 'user', content: 'What is the captial of India?'}
         ]
     });
-    console.log(chatCompletion.data.choices[0]);
+    console.log(chatCompletion.data.choices[0].message.content);
 }
 
 main();
